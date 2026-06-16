@@ -1,4 +1,4 @@
---[[
+l--[[
     ================================================================
     [ SCRIPT INFORMATION ]
     Project: Custom Script
@@ -15,13 +15,13 @@
     ================================================================
 ]]
 
--- ⚠️ IMPORTANT: Put this code at the VERY TOP of your Main Script (before obfuscating) ⚠️
+-- âš ï¸ IMPORTANT: Put this code at the VERY TOP of your Main Script (before obfuscating) âš ï¸
 
 local ProtectionConfig = {
-    -- 🔴 CRITICAL: This MUST exactly match the 'Secret' value in your Key System's Config!
+    -- ðŸ”´ CRITICAL: This MUST exactly match the 'Secret' value in your Key System's Config!
     -- If your Key System has: Secret = "Test"
     -- Then this must also be: SecretKey = "Test"
-    SecretKey = "FuckYouBitch575",
+    SecretKey = "FuckYouBitch",
     
     -- The name of your Hub (shown in the kick message if they try to bypass)
     HubName = "Chaos HUB"
@@ -31,17 +31,16 @@ local ProtectionConfig = {
 if not _G[ProtectionConfig.SecretKey] then
     local player = game:GetService("Players").LocalPlayer
     if player then
-        player:Kick("\n🛡️ Unauthorized Execution 🛡️\n\nPlease use the official Key System to run " .. ProtectionConfig.HubName)
+        player:Kick("\nðŸ›¡ï¸ Unauthorized Execution ðŸ›¡ï¸\n\nPlease use the official Key System to run " .. ProtectionConfig.HubName)
     end
     return -- Stops the rest of the script from loading!
 end
 
 -------------------------------------------------------------------------------
--- 👇 YOUR MAIN SCRIPT CODE STARTS HERE 👇
+-- ðŸ‘‡ YOUR MAIN SCRIPT CODE STARTS HERE ðŸ‘‡
 -------------------------------------------------------------------------------
 
 print(ProtectionConfig.HubName .. " Loaded Successfully!")
-
 -- LocalScript - Pruebas de Anticheat con Interfaz Rayfield
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -78,8 +77,8 @@ local TabVisuales = Window:CreateTab("Hitbox Settings", nil)
 
 -- Advertencia
 TabAutomatizacion:CreateSection("System Warnings")
-TabAutomatizacion:CreateLabel("⚠️ WARNING: The 'Kick' function is currently")
-TabAutomatizacion:CreateLabel("bugged. Do not press it, it will be fixed soon.")
+TabAutomatizacion:CreateLabel("⚠️ WARNING: The 'autofarm' function is currently")
+TabAutomatizacion:CreateLabel("bugged. Spam the kick button when you're in the goal, it will be fixed soon.")
 
 -- 2. FUNCIONES LÓGICAS
 local function obtenerCoordenadaObjetivo()
