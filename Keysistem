@@ -20,14 +20,14 @@ local Config = {
     PlatoSecret     = "45b99259-60e7-4045-870a-6ee67d5bcb69", -- Your PlatoBoost Secret Key
 
     -- [2] Anti-Bypass / Global Secret Variable
-    Secret          = "FuckYouBitch575", -- This makes the script ONLY run from the key script. Even if they copy the original obfuscated script to bypass the key, they won't be able to!
+    Secret          = "FuckYouBitch", -- This makes the script ONLY run from the key script. Even if they copy the original obfuscated script to bypass the key, they won't be able to!
     
     -- [3] Scripts & Links
     MainScriptURL   = "https://raw.githubusercontent.com/Chaoshbu/Chaos/refs/heads/main/Script.lua", -- The raw URL of your main script
     
     -- [4] Social Media Settings (Set to true to show, false to hide)
     ShowDiscord     = true,
-    DiscordUrl      = "https://discord.gg/rdpfE28Qh",
+    DiscordURL      = "https://discord.gg/rdpfE28Qh",
     
     ShowInstagram   = false,
     InstagramURL    = "https://www.instagram.com/oyb0i/",
@@ -43,8 +43,8 @@ local Config = {
     MainGuiName     = "Anything", -- Name of the main script's GUI to check if it's already executing
 
     -- [7] Hub Information & UI Text
-    HubName         = "Chaos Hub", -- The main title shown at the top of the GUI
-    HubDescription  = "Join my Discord server" -- The text shown below the title
+    HubName         = "Chaos HUB", -- The main title shown at the top of the GUI
+    HubDescription  = "PLEASE GET YOUR KEY" -- The text shown below the title
 }
 
 -------------------------------------------------------------------------------
@@ -109,6 +109,208 @@ local function cacheLink()
         return false, err or "Server Unreachable"
     end
     return true, cachedLink
+end
+
+-- Verify key on input
+local function redeemKey(key)
+    local nonce = generateNonce()
+    local body = {identifier = lDigest(fGetHwid()), key = key}
+    if useNonce then body.nonce = nonce end
+    
+    local response, err = safeRequest({
+        Url = host .. "/public/redeem/" .. fToString(Config.ServiceId),
+        Method = "POST",
+        Body = lEncode(body),
+        Headers = {["Content-Type"] = "application/json"}
+    })
+    
+    if response and response.StatusCode == 200 then
+        local decoded = lDecode(response.Body)
+        if decoded.success and decoded.data.valid then
+            if useNonce then
+                if decoded.data.hash == lDigest("true" .. "-" .. nonce .. "-" .. Config.PlatoSecret) then 
+                    if writefile then writefile(Config.KeyFileName, key) end
+                    return true, "Success" 
+                end
+                return false, "Integrity Check Failed"
+            end
+            if writefile then writefile(Config.KeyFileName, key) end
+            return true, "Success"
+        end
+        return false, decoded.message or "Invalid Key"
+    end
+    return false, err or "Server Error"
+end
+
+-------------------------------------------------------------------------------
+--! GUI & MAIN SCRIPT EXECUTION
+-------------------------------------------------------------------------------
+
+local function StartMainScript()
+    local player = game:GetService("Players").LocalPlayer
+    local pGui = player:WaitForChild("PlayerGui")
+    
+    -- Destroy old GUI if it exists
+    if pGui:FindFirstChild(Config.OldGuiName) then 
+        pGui[Config.OldGuiName]:Destroy() 
+        task.wait(0.1)
+    end
+    
+    -- Set secret global variable to bypass main script protection
+    _G[Config.Secret] = true 
+    
+    -- Execute main script
+    loadstring(game:HttpGet(Config.MainScriptURL))()
+end
+
+local function CreateGUI()
+    local player = game:GetService("Players").LocalPlayer
+    local coreGui = game:GetService("CoreGui")
+    local targetParent = pcall(function() return coreGui end) and coreGui or player:WaitForChild("PlayerGui")
+    
+    if targetParent:FindFirstChild("OYB_KeySystem") then targetParent.OYB_KeySystem:Destroy() end
+
+    local ScreenGui = Instance.new("ScreenGui", targetParent)
+    ScreenGui.Name = "OYB_KeySystem"
+    ScreenGui.ResetOnSpawn = false
+
+    local MainFrame = Instance.new("Frame", ScreenGui)
+    MainFrame.Size = UDim2.new(0, 340, 0, 420)
+    MainFrame.Position = UDim2.new(0.5, -170, 0.5, -210)
+    MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    MainFrame.Active = true;
+    MainFrame.Draggable = true
+    Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 15)
+    
+    local mainStroke = Instance.new("UIStroke", MainFrame)
+    mainStroke.Thickness = 2;
+    mainStroke.Color = Color3.fromRGB(40, 40, 40)
+
+    -- Close Button
+    local CloseBtn = Instance.new("TextButton", MainFrame)
+    CloseBtn.Size = UDim2.new(0, 30, 0, 30)
+    CloseBtn.Position = UDim2.new(1, -35, 0, 10)
+    CloseBtn.BackgroundTransparency = 1
+    CloseBtn.Text = "X"
+    CloseBtn.TextColor3 = Color3.fromRGB(255, 50, 50)
+    CloseBtn.Font = Enum.Font.GothamBold
+    CloseBtn.TextSize = 18
+    CloseBtn.ZIndex = 10
+    CloseBtn.MouseButton1Click:Connect(function() ScreenGui:Destroy() end)
+
+    local Title = Instance.new("TextLabel", MainFrame)
+    Title.Size = UDim2.new(1, 0, 0, 50)
+    Title.Text = Config.HubName
+    Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    Title.TextColor3 = Color3.fromRGB(0, 170, 255)
+    Title.Font = Enum.Font.GothamBold;
+    Title.TextSize = 16
+    Instance.new("UICorner", Title).CornerRadius = UDim.new(0, 15)
+
+    local PromoText = Instance.new("TextLabel", MainFrame)
+    PromoText.Size = UDim2.new(0.9, 0, 0, 50)
+    PromoText.Position = UDim2.new(0.05, 0, 0, 50)
+    PromoText.BackgroundTransparency = 1
+    PromoText.Text = Config.HubDescription
+    PromoText.TextColor3 = Color3.fromRGB(0, 170, 255)
+    PromoText.Font = Enum.Font.GothamBold;
+    PromoText.TextSize = 14
+    PromoText.TextWrapped = true
+
+    -- Rainbow Stroke Function
+    local function AddRainbowStroke(parent)
+        local stroke = Instance.new("UIStroke", parent)
+        stroke.Thickness = 2
+        stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+        task.spawn(function()
+            while task.wait() do
+                local hue = tick() % 5 / 5
+                stroke.Color = Color3.fromHSV(hue, 1, 1)
+            end
+        end)
+    end
+
+    -- Dynamic Positioning for elements
+    local currentYOffset = 105
+
+    -- Discord Button
+    if Config.ShowDiscord then
+        local DiscordBtn = Instance.new("TextButton", MainFrame)
+        DiscordBtn.Size = UDim2.new(0.85, 0, 0, 35)
+        DiscordBtn.Position = UDim2.new(0.075, 0, 0, currentYOffset)
+        DiscordBtn.Text = "      JOIN DISCORD"
+        DiscordBtn.Font = "GothamBold";
+        DiscordBtn.TextSize = 14
+        DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+        DiscordBtn.TextColor3 = Color3.new(1, 1, 1)
+        Instance.new("UICorner", DiscordBtn)
+        AddRainbowStroke(DiscordBtn)
+
+        local DiscordIcon = Instance.new("ImageLabel", DiscordBtn)
+        DiscordIcon.Size = UDim2.new(0, 20, 0, 20)
+        DiscordIcon.Position = UDim2.new(0.1, 0, 0.5, -10)
+        DiscordIcon.BackgroundTransparency = 1
+        DiscordIcon.Image = "rbxassetid://18505728201"
+        
+        DiscordBtn.MouseButton1Click:Connect(function()
+            fSetClipboard(Config.DiscordURL)
+            local Status = MainFrame:FindFirstChild("StatusLabel")
+            if Status then 
+                Status.Text = "Discord Link Copied!"
+                Status.TextColor3 = Color3.fromRGB(88, 101, 242)
+            end
+            -- Auto-extract invite code from config URL
+            local inviteCode = string.match(Config.DiscordURL, "discord%.gg/([%w-]+)")
+            if syn and syn.request and inviteCode then
+                syn.request({Url = "http://localhost:1111/discord?invite=" .. inviteCode, Method = "GET"})
+            end
+        end)
+        
+        currentYOffset = currentYOffset + 45
+    end
+
+    -- Instagram Button
+    if Config.ShowInstagram then
+        local InstaBtn = Instance.new("TextButton", MainFrame)
+        InstaBtn.Size = UDim2.new(0.85, 0, 0, 35)
+        InstaBtn.Position = UDim2.new(0.075, 0, 0, currentYOffset)
+        InstaBtn.Text = "      FOLLOW INSTAGRAM"
+        InstaBtn.Font = "GothamBold";
+        InstaBtn.TextSize = 14
+        InstaBtn.BackgroundColor3 = Color3.fromRGB(225, 48, 108)
+        InstaBtn.TextColor3 = Color3.new(1, 1, 1)
+        Instance.new("UICorner", InstaBtn)
+        AddRainbowStroke(InstaBtn)
+
+        local InstaIcon = Instance.new("ImageLabel", InstaBtn)
+        InstaIcon.Size = UDim2.new(0, 20, 0, 20)
+        InstaIcon.Position = UDim2.new(0.1, 0, 0.5, -10)
+        InstaIcon.BackgroundTransparency = 1
+        InstaIcon.Image = "rbxassetid://18355586382"
+        
+        InstaBtn.MouseButton1Click:Connect(function()
+            fSetClipboard(Config.InstagramURL)
+            local Status = MainFrame:FindFirstChild("StatusLabel")
+            if Status then 
+                Status.Text = "Instagram Link Copied!"
+                Status.TextColor3 = Color3.fromRGB(225, 48, 108)
+            end
+        end)
+        
+        currentYOffset = currentYOffset + 45
+    end
+
+    -- YouTube Button
+    if Config.ShowYoutube then
+        local YTBtn = Instance.new("TextButton", MainFrame)
+        YTBtn.Size = UDim2.new(0.85, 0, 0, 35)
+        YTBtn.Position = UDim2.new(0.075, 0, 0, currentYOffset)
+        YTBtn.Text = "      SUBSCRIBE YOUTUBE"
+        YTBtn.Font = "GothamBold";
+        YTBtn.TextSize = 14
+        YTBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        YTBtn.TextColor3 = Color3.new(1, 1, 1)
+        Instance.new("UICorner", YTBtn    return true, cachedLink
 end
 
 -- Verify key on input
