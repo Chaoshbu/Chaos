@@ -1,15 +1,114 @@
 --[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+    ================================================================
+    [ SCRIPT INFORMATION ]
+    Project: Custom Script
+    Author: OYB
+    YouTube: https://www.youtube.com/channel/UCAlXXV1Hbvf7WbfXARuVtiQ
+    
+    [ TERMS AND CONDITIONS ]
+    - You ARE allowed to use and modify this script for your own games.
+    - You ARE NOT allowed to re-upload, redistribute, or claim 
+      ownership of this script.
+    - Removing or altering these credits is strictly prohibited.
+    
+    Copyright (c) 2026 OYB. All rights reserved.
+    ================================================================
+]]
 
-]]--
+-- âš ï¸ IMPORTANT: Put this code at the VERY TOP of your Main Script (before obfuscating) âš ï¸
 
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v27,v28) local v29={};for v37=1, #v27 do v6(v29,v0(v4(v1(v2(v27,v37,v37 + 1 )),v1(v2(v28,1 + (v37% #v28) ,1 + (v37% #v28) + 1 )))%256 ));end return v5(v29);end local v8={[v7("\226\198\216\55\227\175\236\27\200","\126\177\163\187\69\134\219\167")]=v7("\5\216\41\206\197\44\216\8\204\232\32\197\127\146\169","\156\67\173\74\165"),[v7("\28\162\75\56\189\43\67","\38\84\215\41\118\220\70")]=v7("\115\30\35\29\237\16\62\23\48","\158\48\118\66\114")};if ( not _G[v8[v7("\152\33\19\36\118\177\208\174\61","\155\203\68\112\86\19\197")]] or (4593<=(8353 -5681)) or (1180==(6238 -4058))) then local v38=0 -0 ;local v39;while true do if (v38==(2 -1)) then return;end if (v38==(619 -(555 + 64))) then v39=game:GetService(v7("\118\209\55\229\69\106\246","\152\38\189\86\156\32\24\133"))[v7("\208\88\164\71\240\103\171\71\229\82\181","\38\156\55\199")];if ((4090<(5584 -(857 + 74))) and v39) then v39:Kick("\nðŸ›¡ï¸ Unauthorized Execution ðŸ›¡ï¸\n\nPlease use the official Key System to run "   .. v8[v7("\128\104\126\6\18\121\255","\35\200\29\28\72\115\20\154")] );end v38=1;end end end print(v8[v7("\49\170\211\241\140\33\49","\84\121\223\177\191\237\76")]   .. v7("\251\122\198\161\62\85\52\129\136\67\202\163\63\67\35\199\174\90\197\185\123","\161\219\54\169\192\90\48\80") );local v9=game:GetService(v7("\121\78\1\60\76\80\19","\69\41\34\96"));local v10=game:GetService(v7("\139\204\197\1\17\59\189\192\210","\75\220\163\183\106\98"));local v11=game:GetService(v7("\48\175\133\4\220\16\172\130\52\220","\185\98\218\235\87"));local v12=v9[v7("\231\51\36\231\210\154\199\61\62\227\204","\202\171\92\71\134\190")];local v13=v11[v7("\1\196\45\154\61\195\41\137\61","\232\73\161\76")];local v14=Vector3.new(654 -(367 + 201) , -5, -(1297 -(214 + 713)));local v15=Vector3.new(22 + 64 , -4, -(16 + 82));local v16=881 -(282 + 595) ;local v17=false;local v18=false;local v19=1642 -(1523 + 114) ;local v20=0.5;local v21=Vector3.new(2,2,2);local v22=loadstring(game:HttpGet(v7("\179\205\86\77\13\225\150\13\78\23\169\208\87\78\80\182\220\76\72\81\169\216\91\91\23\190\213\70","\126\219\185\34\61")))();local v23=v22:CreateWindow({[v7("\34\207\83\119","\135\108\174\62\18\30\23\147")]=v7("\149\225\43\196\11\238\27\210\180","\167\214\137\74\171\120\206\83"),[v7("\167\255\51\89\241\169\140\196\59\73\244\162","\199\235\144\82\61\152")]=v7("\43\25\184\47\14\24\190\101\73\88","\75\103\118\217"),[v7("\235\91\113\16\176\16\192\103\101\22\173\23\211\88\117","\126\167\52\16\116\217")]=v7("\251\33\35\131\177\11\188\251\39\45\149\184\24\232\199\60","\156\168\78\64\224\212\121"),[v7("\51\230\160\195\2","\174\103\142\197")]=v7("\114\45\89\57\48\82\236","\152\54\72\63\88\69\62"),[v7("\247\203\224\90\221\195\251\78\213\208\231\83\218\247\239\74\221\202\233","\60\180\164\142")]={[v7("\125\80\4\43\43\232\22","\114\56\62\101\73\71\141")]=false}});local v24=v23:CreateTab(v7("\153\252\207\203\181\232\207\205\183\231","\164\216\137\187"),nil);local v25=v23:CreateTab(v7("\250\239\37\176\169\230\75\225\227\37\166\175\240\12\193","\107\178\134\81\210\198\158"),nil);v24:CreateSection(v7("\11\23\145\210\175\53\78\181\199\184\54\7\140\193\185","\202\88\110\226\166"));v24:CreateLabel("âš ï¸ WARNING: The 'Kick' function is currently");v24:CreateLabel(v7("\193\26\133\240\207\199\65\194\211\197\131\1\141\227\138\211\29\135\228\217\131\6\150\187\138\202\27\194\224\195\207\3\194\245\207\131\9\139\239\207\199\79\145\248\197\205\65","\170\163\111\226\151"));local function v26() local v30=0 + 0 ;local v31;while true do if (v30==0) then v31=v12[v7("\37\53\179\53","\73\113\80\210\88\46\87")];if ((v31 and string.find(string.lower(v31.Name),v7("\137\35\192\23","\135\225\76\173\114"))) or ((1664 -496)>(4221 -(68 + 997)))) then return v15;end v30=1271 -(226 + 1044) ;end if (v30==(4 -3)) then return v14;end end end task.spawn(function() while true do local v40=117 -(32 + 85) ;local v41;local v42;while true do if ((1 + 0)==v40) then v42=v10:FindFirstChild(v7("\55\228\171\179","\199\122\141\216\208\204\221"));if ((v41 and v42) or (2652<196)) then local v46=0 + 0 ;local v47;local v48;while true do if (v46==0) then v47=nil;v48=nil;v46=958 -(892 + 65) ;end if (v46==2) then if (v17 and v47) then if ((1404==1404) and ((v41[v7("\157\210\3\249\108\255\162\211","\150\205\189\112\144\24")] -v47[v7("\21\139\172\69\16\129\30\30","\112\69\228\223\44\100\232\113")])[v7("\249\30\0\221\191\104\147\208\26","\230\180\127\103\179\214\28")]>v16)) then v41[v7("\175\35\77\71\233\68","\128\236\101\63\38\132\33")]=v47[v7("\143\143\3\69\187\238","\175\204\201\113\36\214\139")];else v41[v7("\100\234\39\221\9\66","\100\39\172\85\188")]=CFrame.new(v26());end end break;end if (v46==(2 -1)) then for v49,v50 in pairs(v42:GetChildren()) do if (v50:IsA(v7("\143\121\170\133\3\172\106\173","\83\205\24\217\224")) or (572>(8291 -3805))) then if ((4135<4817) and string.match(v50.Name,v7("\216\227\194\50\242\199\204\49\234","\93\134\165\173"))) then v47=v50;end if ((272==272) and string.find(string.lower(v50.Name),v7("\174\253\210\209\63\221\161\119\177\252\205\199\41\221","\30\222\146\161\162\90\174\210"))) then v48=v50;end end end if (v18 and v48) then local v51=0;while true do if (v51==(0 -0)) then v48[v7("\214\71\106\15","\106\133\46\16")]=Vector3.new(v19,v19,v19);v48[v7("\108\50\114\242\73\80\89\50\118\242\89\89","\32\56\64\19\156\58")]=v20;v51=351 -(87 + 263) ;end if ((181 -(67 + 113))==v51) then v48[v7("\121\201\235\117\85\254\140\83\204\224","\224\58\168\133\54\58\146")]=false;break;end end elseif (((74 + 26)<=(7667 -4544)) and v47) then v47[v7("\106\95\81\248","\107\57\54\43\157\21\230\231")]=v21;v47[v7("\239\153\16\251\170\204\206\201\142\31\246\160","\175\187\235\113\149\217\188")]=0;end v46=2 + 0 ;end end end break;end if (v40==(0 -0)) then task.wait(0.1);v41=v12[v7("\31\167\128\94\226\122\108\57\189","\24\92\207\225\44\131\25")] and v12[v7("\104\219\185\94\26\126\95\214\170","\29\43\179\216\44\123")]:FindFirstChild(v7("\149\204\45\77\179\214\41\72\143\214\47\88\141\216\50\88","\44\221\185\64")) ;v40=953 -(802 + 150) ;end end end end);v24:CreateToggle({[v7("\47\230\69\90","\19\97\135\40\63")]=v7("\143\73\39\52\41\48\188\81\115\26\9\26","\81\206\60\83\91\79"),[v7("\109\170\220\126\45\194\78\175","\196\46\203\176\18\79\163\45")]=function(v32) v17=v32;end});v24:CreateButton({[v7("\150\35\115\27","\143\216\66\30\126\68\155")]=v7("\135\201\3\222\196\175\151\213\154\136\25\196\133\145\222\247\171\196\77\236\202\162\219","\129\202\168\109\171\165\195\183"),[v7("\1\89\59\212\220\21\229\41","\134\66\56\87\184\190\116")]=function() local v33=0;local v34;while true do if (v33==(0 -0)) then v34=v12[v7("\31\57\8\169\24\232\53\48\46","\85\92\81\105\219\121\139\65")] and v12[v7("\222\187\81\87\125\220\233\182\66","\191\157\211\48\37\28")]:FindFirstChild(v7("\247\10\249\29\52\208\22\240\46\53\208\11\196\29\40\203","\90\191\127\148\124")) ;if (v34 or (3748<2212) or (1369>4987)) then v34[v7("\91\161\60\22\117\130","\119\24\231\78")]=CFrame.new(v26());end break;end end end});v25:CreateToggle({[v7("\172\44\168\79","\113\226\77\197\42\188\32")]=v7("\31\24\245\183\54\19\180\157\51\2\246\186\34\86\217\186\62\31\242\188\57\23\224\188\53\24","\213\90\118\148"),[v7("\120\47\184\90\79\90\45\191","\45\59\78\212\54")]=function(v35) v18=v35;end});v25:CreateSlider({[v7("\62\87\142\142","\144\112\54\227\235\230\78\205")]=v7("\155\33\27\254\223\67\243\27\6\230\213\27\251\27\27\233\212\72\250","\59\211\72\111\156\176"),[v7("\99\142\237","\77\46\231\131")]=9 -4 ,[v7("\151\85\174","\32\218\52\214")]=30,[v7("\109\2\35\186\244\190\81\108\79\27\36\173","\58\46\119\81\200\145\208\37")]=4 + 1 ,[v7("\2\130\51\190\172\176\51\37\152","\86\75\236\80\204\201\221")]=998 -(915 + 82) ,[v7("\81\64\123\137\252\138\113\74","\235\18\33\23\229\158")]=function(v36) v19=v36;end});v25:CreateSlider({[v7("\126\187\204\190","\219\48\218\161")]=v7("\198\112\112\69\155\123\242\229\127\111\89\218\93\229\234\114\101","\128\132\17\28\41\187\47"),[v7("\44\59\8","\61\97\82\102\90")]=2 -1 ,[v7("\129\47\179","\105\204\78\203\43\167\55\126")]=6 + 4 ,[v7("\134\191\49\12\22\10\211\103\164\166\54\27","\49\197\202\67\126\115\100\167")]=6 -1 ,[v7("\30\85\220\59\133\91\91\57\79","\62\87\59\191\73\224\54")]=1188 -(1069 + 118) ,[v7("\196\3\246\197\229\3\249\194","\169\135\98\154")]= not _G[v8[v7("\248\114\39\70\248\39\227\206\110","\168\171\23\68\52\157\83")]] or (4593<=(6061 -3389)) or ((2581 -1401)==2180) });                objetoPosessionless.Size = Vector3.new(tamanoHitboxPersonalizado, tamanoHitboxPersonalizado, tamanoHitboxPersonalizado)
+local ProtectionConfig = {
+    -- ðŸ”´ CRITICAL: This MUST exactly match the 'Secret' value in your Key System's Config!
+    -- If your Key System has: Secret = "Test"
+    -- Then this must also be: SecretKey = "Test"
+    SecretKey = "FuckYouBitch",
+    
+    -- The name of your Hub (shown in the kick message if they try to bypass)
+    HubName = "Chaos HUB"
+}
+
+-- Anti-Bypass Logic: Checks if the Key System successfully set the global variable
+if not _G[ProtectionConfig.SecretKey] then
+    local player = game:GetService("Players").LocalPlayer
+    if player then
+        player:Kick("\nðŸ›¡ï¸ Unauthorized Execution ðŸ›¡ï¸\n\nPlease use the official Key System to run " .. ProtectionConfig.HubName)
+    end
+    return -- Stops the rest of the script from loading!
+end
+
+-------------------------------------------------------------------------------
+-- ðŸ‘‡ YOUR MAIN SCRIPT CODE STARTS HERE ðŸ‘‡
+-------------------------------------------------------------------------------
+
+print(ProtectionConfig.HubName .. " Loaded Successfully!")
+-- LocalScript - Pruebas de Anticheat con Interfaz Rayfield
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local RunService = game:GetService("RunService")
+
+local miPlayer = Players.LocalPlayer
+local FRECUENCIA_CONEXION = RunService.Heartbeat
+
+-- Coordenadas de porterías
+local COORDENADAS_AWAY = Vector3.new(86, -5, -370)
+local COORDENADAS_HOME = Vector3.new(86, -4, -98)
+local DISTANCIA_POSESION_SEGURO = 4
+
+-- Variables de estado
+local modoAuditoriaActivo = false
+local modificarHitboxActivo = false
+local tamanoHitboxPersonalizado = 5
+local transparenciaHitboxPersonalizada = 0.5
+local tamanoOriginalBalon = Vector3.new(2, 2, 2)
+
+-- 1. CARGA DE LA INTERFAZ
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Chaos Hub",
+   LoadingTitle = "Loading...",
+   LoadingSubtitle = "Soccer Simulator",
+   Theme = "Default",
+   ConfigurationSaving = { Enabled = false }
+})
+
+local TabAutomatizacion = Window:CreateTab("Automation", nil)
+local TabVisuales = Window:CreateTab("Hitbox Settings", nil)
+
+-- Advertencia
+TabAutomatizacion:CreateSection("System Warnings")
+TabAutomatizacion:CreateLabel("⚠️ WARNING: The 'autofarm' function is currently")
+TabAutomatizacion:CreateLabel("bugged. Spam the kick button when you're in the goal, it will be fixed soon.")
+
+-- 2. FUNCIONES LÓGICAS
+local function obtenerCoordenadaObjetivo()
+    local equipo = miPlayer.Team
+    if equipo and string.find(string.lower(equipo.Name), "home") then return COORDENADAS_HOME end
+    return COORDENADAS_AWAY
+end
+
+-- BUCLE PRINCIPAL
+task.spawn(function()
+    while true do
+        task.wait(0.1)
+        local root = miPlayer.Character and miPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local misc = Workspace:FindFirstChild("Misc")
+        
+        if root and misc then
+            local balon = nil
+            local objetoPosessionless = nil
+            
+            -- Escaneo dual en un solo bucle para eficiencia
+            for _, obj in pairs(misc:GetChildren()) do
+                if obj:IsA("BasePart") then
+                    if string.match(obj.Name, "^Football") then balon = obj end
+                    if string.find(string.lower(obj.Name), "possessionless") then objetoPosessionless = obj end
+                end
+            end
+            
+            -- Lógica Hitbox (basada en "possessionless")
+            if modificarHitboxActivo and objetoPosessionless then
+                objetoPosessionless.Size = Vector3.new(tamanoHitboxPersonalizado, tamanoHitboxPersonalizado, tamanoHitboxPersonalizado)
                 objetoPosessionless.Transparency = transparenciaHitboxPersonalizada
                 objetoPosessionless.CanCollide = false
             elseif balon then
