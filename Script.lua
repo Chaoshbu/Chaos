@@ -41,6 +41,7 @@ end
 -------------------------------------------------------------------------------
 
 print(ProtectionConfig.HubName .. " Loaded Successfully!")
+
 -- LocalScript - Pruebas de Anticheat con Interfaz Rayfield
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
